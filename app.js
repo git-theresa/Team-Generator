@@ -13,9 +13,7 @@ const render = require("./lib/htmlRenderer");
 
 ​
 // Prompts within command line
-function inquireQuestions() {
-    inquirer
-    .prompt([
+const questions = [
     {   
       type: "input",
       message: "What is your full name",
@@ -30,29 +28,32 @@ function inquireQuestions() {
       type: "list",
       message: "Employee Type",
       choices: ["Manager", "Engineer", "Intern"],
-      name: "employee"
+      name: "role"
     },
     {
       type: "checkbox",
       message: "Number of Employees",
       choices: ["1", "2", "3", "No More Team Members"],
-      name: "Employee Amt"
+      name: "employeeAmt"
     }
      
     ])
+    .then(function(response){
+      console.log(response)
+    });
     //  End Questions:
 
-    // function runEmployees(){
+    function runEmployees(){
 
-    //   inquirer.prompt(questions).then(function(response){
-    //     console.log(response);
+      inquirer.prompt(questions).then(function(response){
+        console.log(response);
 
-    //     switch(response.choice){
-    //       case '1':
-    //         getEmployee();
-    //     }
-    //   })
-    // }
+        switch(response.choice){
+          case '1':
+            getEmployee();
+        }
+      })
+    }
 
 
   }

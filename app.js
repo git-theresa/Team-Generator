@@ -5,7 +5,7 @@ const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 ​
-const OUTPUT_DIR = path.resolve(__dirname, "output")
+const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 ​
 const render = require("./lib/htmlRenderer");
@@ -23,31 +23,38 @@ function inquireQuestions() {
     },
     {
       type: "input",
-      message: "GitHub username",
-      name: "username"
+      message: "What is your email address?",
+      name: "email"
     },
     {
-      type: "input",
-      message: "Project Title",
-      name: "project"
+      type: "list",
+      message: "Employee Type",
+      choices: ["Manager", "Engineer", "Intern"],
+      name: "employee"
     },
     {
-      type: "input",
-      message: "Description",
-      name: "description"
-    },
-    {
-      type: "input",
-      message: "Installation",
-      name: "installation"
-    },
-    
+      type: "checkbox",
+      message: "Number of Employees",
+      choices: ["1", "2", "3", "No More Team Members"],
+      name: "Employee Amt"
+    }
      
     ])
-      .then(function(answers){
-      let username = answers.username;
-      githubAPICall(username, answers);
-      });
+    //  End Questions:
+
+    // function runEmployees(){
+
+    //   inquirer.prompt(questions).then(function(response){
+    //     console.log(response);
+
+    //     switch(response.choice){
+    //       case '1':
+    //         getEmployee();
+    //     }
+    //   })
+    // }
+
+
   }
   inquireQuestions();
   ​

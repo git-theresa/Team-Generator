@@ -9,8 +9,51 @@ const OUTPUT_DIR = path.resolve(__dirname, "output")
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 ​
 const render = require("./lib/htmlRenderer");
+// render argument must be in []
+
 ​
-​
+// Prompts within command line
+function inquireQuestions() {
+    inquirer
+    .prompt([
+    {   
+      type: "input",
+      message: "What is your full name",
+      name: "firstLast"
+    },
+    {
+      type: "input",
+      message: "GitHub username",
+      name: "username"
+    },
+    {
+      type: "input",
+      message: "Project Title",
+      name: "project"
+    },
+    {
+      type: "input",
+      message: "Description",
+      name: "description"
+    },
+    {
+      type: "input",
+      message: "Installation",
+      name: "installation"
+    },
+    
+     
+    ])
+      .then(function(answers){
+      let username = answers.username;
+      githubAPICall(username, answers);
+      });
+  }
+  inquireQuestions();
+  ​
+
+
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 ​

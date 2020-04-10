@@ -48,9 +48,8 @@ const questions = [
       message: "What is your office number?",
       name: "officeNumber"
       })
-     
       .then (function(manager){
-        console.log(manager);
+      console.log(manager);
       })
       }
 
@@ -60,15 +59,27 @@ const questions = [
       message: "what is your github id?",
       name: "github"
       })
-   
       .then (function(engineer){
       console.log(engineer);
       })
-       }
-      })
+      }
+
+      else if(response.role === "Intern"){
+        inquirer.prompt({
+        type: "input",
+        message: "What school did you attend?",
+        name: "school"
+        })
+        .then (function(intern){
+        console.log(intern);
+        })
+        }
+
+  })
 // End function 
 }
-
-
 runEmployees();
+function render (template)
+
+
 

@@ -33,9 +33,10 @@ const questions = [
     choices: ["1", "2", "3", "No More Team Members"],
     name: "id",
   },
-]; 
+];
+ // End Questions:
 const team = [];
-// End Questions:
+
 function runEmployees() {
  
   inquirer
@@ -52,9 +53,7 @@ function runEmployees() {
       switch (buildTeam) {
         case "Build Team":
           inquirer.prompt(questions).then(function (choices) {
-            // switch(response.choice){
-            // case './Manager':
-            // getEmployee(Manager) {
+            // switch(response.choice){  // case './Manager': // getEmployee(Manager) {
 
             if (choices.role === "Manager") {
               inquirer
@@ -80,28 +79,28 @@ function runEmployees() {
             }
             // runEmployees();
             // switch(response.choice){ // case "./Engineer" // getEmployee(Engineer){
-            else if (response.role === "Engineer") {
+            else if (choices.role === "Engineer") {
               inquirer
                 .prompt({
                   type: "input",
                   message: "what is your github id?",
                   name: "github",
                 })
-                .then(function (engineer) {
+                .then(function (answer) {
                   var newEngineer = new Engineer(
-                    response.name,
-                    response.id,
-                    response.email,
-                    response.officeNumber,
-                    response.github
+                    choices.firstLast,
+                    choices.id,
+                    choices.email,
+                    answer.officeNumber,
+                    answer.github
                   );
                   team.push(newEngineer);
-                  console.log(engineer);
+                  console.log(Engineer);
                   runEmployees();
                 });
             }
             // switch(response.choice){ // case "./Intern" // getEmployee(Intern){
-            else if (response.role === "Intern") {
+            else if (choices.role === "Intern") {
               inquirer
                 .prompt({
                   type: "input",
@@ -110,9 +109,9 @@ function runEmployees() {
                 })
                 .then(function (answer) {
                   var newIntern = new Intern(
-                    response.name,
-                    response.id,
-                    response.email,
+                    choices.firstLast,
+                    choices.id,
+                    choices.email,
                     answer.school
                   );
                   team.push(newIntern);
@@ -120,11 +119,8 @@ function runEmployees() {
                 });
             }
           });
-
-          // End Switch Case 1
-
-          break;
-
+                   break;
+                 // End Switch Case 1
         case "Finish Team":
           console.log(team);
           if (team.length > 0) {
@@ -132,10 +128,8 @@ function runEmployees() {
             writeHTML(render(team));
           } else {
             console.log("no team members");
-            
           }
           break;
-
         default:
           break;
       }
@@ -144,7 +138,7 @@ function runEmployees() {
 }
 // End function
 runEmployees();
-
+// Write to Page
   function writeHTML(HTML){
     console.log(HTML);
   fs.writeFileSync(outputPath, HTML, function(err) {

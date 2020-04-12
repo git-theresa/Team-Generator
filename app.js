@@ -10,76 +10,148 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 // Prompts within command line
 const questions = [
-    {   
-      type: "input",
-      message: "What is your full name?",
-      name: "firstLast"
-    },
-    {
-      type: "input",
-      message: "What is your email address?",
-      name: "email"
-    },
-    {
-      type: "list",
-      message: "Employee Type",
-      choices: ["Manager", "Engineer", "Intern"],
-      name: "role"
-    },
-    {
-      type: "list",
-      message: "Number of Employees",
-      choices: ["1", "2", "3", "No More Team Members"],
-      name: "employeeAmt"
-    } 
-    ]
-    // End Questions:
-  function runEmployees(){
-    inquirer.prompt(questions)
-    .then(function(response){
-    console.log(response);
-    
-      // switch(response.choice){
-      // case '1':
-      // getEmployee(Manager) {
-      if(response.role === "Manager"){
-      inquirer.prompt({
-      type: "input",
-      message: "What is your office number?",
-      name: "officeNumber"
-      })
-      .then (function(manager){
-      console.log(manager);
-      })
+  {
+    type: "input",
+    message: "What is your full name?",
+    name: "firstLast",
+  },
+  {
+    type: "input",
+    message: "What is your email address?",
+    name: "email",
+  },
+  {
+    type: "list",
+    message: "Employee Type",
+    choices: ["Manager", "Engineer", "Intern"],
+    name: "role",
+  },
+  
+  {
+    type: "list",
+    message: "Number of Employees id",
+    choices: ["1", "2", "3", "No More Team Members"],
+    name: "id",
+  },
+]; 
+const team = [];
+// End Questions:
+function runEmployees() {
+ 
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "What would you like to do?",
+        choices: ["Build Team", "Finish Team"],
+        name: "newTeam",
+      },
+    ])
+    .then(function (response) {
+      const buildTeam = response.newTeam;
+      switch (buildTeam) {
+        case "Build Team":
+          inquirer.prompt(questions).then(function (choices) {
+            // switch(response.choice){
+            // case './Manager':
+            // getEmployee(Manager) {
+
+            if (choices.role === "Manager") {
+              inquirer
+                .prompt({
+                  type: "input",
+                  message: "What is your office number?",
+                  name: "officeNumber",
+                })
+                // .then(function({officeNumber}){
+                .then(function (answer) {
+                  var newManager = new Manager(
+                   choices.firstLast,
+                    choices.id,
+                    choices.email,
+                    answer.officeNumber
+                  );
+                  team.push(newManager);
+                  console.log(team);
+                  runEmployees();
+
+                  // })
+                });
+            }
+            // runEmployees();
+            // switch(response.choice){ // case "./Engineer" // getEmployee(Engineer){
+            else if (response.role === "Engineer") {
+              inquirer
+                .prompt({
+                  type: "input",
+                  message: "what is your github id?",
+                  name: "github",
+                })
+                .then(function (engineer) {
+                  var newEngineer = new Engineer(
+                    response.name,
+                    response.id,
+                    response.email,
+                    response.officeNumber,
+                    response.github
+                  );
+                  team.push(newEngineer);
+                  console.log(engineer);
+                  runEmployees();
+                });
+            }
+            // switch(response.choice){ // case "./Intern" // getEmployee(Intern){
+            else if (response.role === "Intern") {
+              inquirer
+                .prompt({
+                  type: "input",
+                  message: "What school did you attend?",
+                  name: "school",
+                })
+                .then(function (answer) {
+                  var newIntern = new Intern(
+                    response.name,
+                    response.id,
+                    response.email,
+                    answer.school
+                  );
+                  team.push(newIntern);
+                  runEmployees();
+                });
+            }
+          });
+
+          // End Switch Case 1
+
+          break;
+
+        case "Finish Team":
+          console.log(team);
+          if (team.length > 0) {
+            console.log("all done!"); 
+            writeHTML(render(team));
+          } else {
+            console.log("no team members");
+            
+          }
+          break;
+
+        default:
+          break;
       }
-
-      else if(response.role === "Engineer"){
-      inquirer.prompt({
-      type: "input",
-      message: "what is your github id?",
-      name: "github"
-      })
-      .then (function(engineer){
-      console.log(engineer);
-      })
-      }
-
-      else if(response.role === "Intern"){
-        inquirer.prompt({
-        type: "input",
-        message: "What school did you attend?",
-        name: "school"
-        })
-        .then (function(intern){
-        console.log(intern);
-        })
-        }
-
-  })
-// End function 
+      // End
+    });
 }
+// End function
 runEmployees();
-function render (template)
 
-
+  function writeHTML(HTML){
+    console.log(HTML);
+  fs.writeFileSync(outputPath, HTML, function(err) {
+  if (err) {
+  return console.log(err);
+  }
+  // console.log("Success!");
+  });
+}
 

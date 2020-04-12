@@ -29,7 +29,7 @@ const questions = [
   
   {
     type: "list",
-    message: "Number of Employees id",
+    message: "Employees Number id",
     choices: ["1", "2", "3", "No More Team Members"],
     name: "id",
   },
@@ -91,7 +91,6 @@ function runEmployees() {
                     choices.firstLast,
                     choices.id,
                     choices.email,
-                    answer.officeNumber,
                     answer.github
                   );
                   team.push(newEngineer);

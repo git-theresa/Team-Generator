@@ -26,7 +26,6 @@ const questions = [
     choices: ["Manager", "Engineer", "Intern"],
     name: "role",
   },
-
   {
     type: "list",
     message: "Employees Number id",
@@ -47,11 +46,11 @@ function runEmployees() {
         name: "newTeam",
       },
     ])
-    .then(function (response) {
+    .then(response => {
       const buildTeam = response.newTeam;
       switch (buildTeam) {
         case "Build Team":
-          inquirer.prompt(questions).then(function (choices) {
+          inquirer.prompt(questions).then(choices => {
             // Manager Role
             if (choices.role === "Manager") {
               inquirer
@@ -60,7 +59,7 @@ function runEmployees() {
                   message: "What is your office number?",
                   name: "officeNumber",
                 })
-                 .then(function (answer) {
+                 .then(answer => {
                   var newManager = new Manager(
                     choices.firstLast,
                     choices.id,
@@ -79,7 +78,7 @@ function runEmployees() {
                   message: "What is your GitHub id?",
                   name: "github",
                 })
-                .then(function (answer) {
+                .then(answer => {
                   var newEngineer = new Engineer(
                     choices.firstLast,
                     choices.id,
@@ -98,7 +97,7 @@ function runEmployees() {
                   message: "What school did you attend?",
                   name: "school",
                 })
-                .then(function (answer) {
+                .then(answer => {
                   var newIntern = new Intern(
                     choices.firstLast,
                     choices.id,

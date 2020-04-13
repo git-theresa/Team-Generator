@@ -1,13 +1,12 @@
- # **Team-Generator**
- 
- 
-  <img align="left" src= "https://img.shields.io/badge/License-MIT-green">
-
-  <img align="right" width="100" height="100" src="https://avatars2.githubusercontent.com/u/57425164?v=4">
+<img align="left" src= "https://img.shields.io/badge/License-MIT-green">
 
 
+<img align="right" width="100" height="100" src="https://avatars2.githubusercontent.com/u/57425164?v=4">
 
 
+#   
+
+# **Team-Generator**
 
 ### Link: https://github.com/git-theresa/Team-Generator
 
@@ -28,7 +27,12 @@ This is for the use of a developer to create and generate a Team of Employees (M
 ### **Installation**
 JSON Package with all dependencies included.
 
+
 ### **Usage**
+
+<img src = assets/teamGen.gif width="400" style="display: block; margin: 0 auto"/>
+
+
 1.  After forking this repository in your GitHub, the user will install all dependencies within the given JSON Package. 
 _To install, open the terminal into the correct directory and simply type **npm install.**_  
 2.  After installation, the user will answer a series of prompts given in the terminal command line._If GitHub API does not recognize the user input, **undefined** will be a returned response._ 
@@ -41,7 +45,7 @@ Once successfully pushed, Generate ReadME will generate a team of employees, all
 | _Name_           |  _Name_           | _Name_          |
 | _ID #_           | _ID #_            | _ID #_          |
 | _Email Address_  | _Email Address_   | _Email Address_ |
-| _Office Number_  | _github userName_ |_School Attended_|
+| _Office Number_  | _GitHub userName_ |_School Attended_|
 
 ### ***Technology Stack***
 _CSS, BootStrap, HTML, JavaScript, jQuery, Node.js_

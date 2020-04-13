@@ -34,7 +34,7 @@ JSON Package with all dependencies included.
 
 
 1.  After forking this repository in your GitHub, the user will install all dependencies within the given JSON Package. 
-_To install, open the terminal into the correct directory and simply type **npm install.**_  
+_To install, open the terminal into the correct directory and simply type **npm install.**_ USER MUST ALSO RUN TESTS: __npm run test__
 2.  After installation, the user will answer a series of prompts given in the terminal command line._If GitHub API does not recognize the user input, **undefined** will be a returned response._ 
 Once all questions are answered, the command line will return **Success!**  
 3.  Lastly, the user will use all git commands _(git add -A, git commit -m "", git push)._  
@@ -55,5 +55,5 @@ _CSS, BootStrap, HTML, JavaScript, jQuery, Node.js_
 * :e-mail:  Email: [t.eatherly@gmail.com](t.eatherly@gmail.com)
 * :earth_americas:  LinkedIn: [https://www.linkedin.com/in/theresa-eatherly-4362b14a/](https://www.linkedin.com/in/theresa-eatherly-4362b14a/)
 
-#### **License** 
- _MIT_
+#### **Test**  __npm run test__
+ 

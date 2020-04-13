@@ -131,7 +131,7 @@ runEmployees();
 // Write to Page
 const writeHTML=HTML=> {
   console.log(HTML);
-  fs.writeFileSync(outputPath, HTML, function (err) {
+  fs.writeFileSync(outputPath, HTML, (err) => {
     if (err) {
       return console.log(err);
     }

@@ -36,7 +36,7 @@ const questions = [
 // End Questions:
 const team = [];
 
-function runEmployees() {
+const runEmployees=() => {
   inquirer
     .prompt([
       {

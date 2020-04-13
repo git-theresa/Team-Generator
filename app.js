@@ -60,7 +60,7 @@ const runEmployees=() => {
                   name: "officeNumber",
                 })
                  .then(answer => {
-                  var newManager = new Manager(
+                  let newManager = new Manager(
                     choices.firstLast,
                     choices.id,
                     choices.email,
@@ -79,7 +79,7 @@ const runEmployees=() => {
                   name: "github",
                 })
                 .then(answer => {
-                  var newEngineer = new Engineer(
+                  let newEngineer = new Engineer(
                     choices.firstLast,
                     choices.id,
                     choices.email,
@@ -98,7 +98,7 @@ const runEmployees=() => {
                   name: "school",
                 })
                 .then(answer => {
-                  var newIntern = new Intern(
+                  let newIntern = new Intern(
                     choices.firstLast,
                     choices.id,
                     choices.email,

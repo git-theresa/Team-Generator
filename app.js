@@ -8,7 +8,7 @@ const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-// Prompts within command line
+// Prompts within command line (Based from Employee Role)
 const questions = [
   {
     type: "input",
@@ -26,7 +26,7 @@ const questions = [
     choices: ["Manager", "Engineer", "Intern"],
     name: "role",
   },
-  
+
   {
     type: "list",
     message: "Employees Number id",
@@ -34,11 +34,10 @@ const questions = [
     name: "id",
   },
 ];
- // End Questions:
+// End Questions:
 const team = [];
 
 function runEmployees() {
- 
   inquirer
     .prompt([
       {
@@ -53,8 +52,7 @@ function runEmployees() {
       switch (buildTeam) {
         case "Build Team":
           inquirer.prompt(questions).then(function (choices) {
-            // switch(response.choice){  // case './Manager': // getEmployee(Manager) {
-
+            // Manager Role
             if (choices.role === "Manager") {
               inquirer
                 .prompt({
@@ -62,10 +60,9 @@ function runEmployees() {
                   message: "What is your office number?",
                   name: "officeNumber",
                 })
-                // .then(function({officeNumber}){
-                .then(function (answer) {
+                 .then(function (answer) {
                   var newManager = new Manager(
-                   choices.firstLast,
+                    choices.firstLast,
                     choices.id,
                     choices.email,
                     answer.officeNumber
@@ -73,17 +70,14 @@ function runEmployees() {
                   team.push(newManager);
                   console.log(team);
                   runEmployees();
-
-                  // })
                 });
             }
-            // runEmployees();
-            // switch(response.choice){ // case "./Engineer" // getEmployee(Engineer){
+            // Engineer Role
             else if (choices.role === "Engineer") {
               inquirer
                 .prompt({
                   type: "input",
-                  message: "what is your github id?",
+                  message: "What is your GitHub id?",
                   name: "github",
                 })
                 .then(function (answer) {
@@ -98,7 +92,7 @@ function runEmployees() {
                   runEmployees();
                 });
             }
-            // switch(response.choice){ // case "./Intern" // getEmployee(Intern){
+            // Intern Role
             else if (choices.role === "Intern") {
               inquirer
                 .prompt({
@@ -118,12 +112,12 @@ function runEmployees() {
                 });
             }
           });
-                   break;
-                 // End Switch Case 1
+          break;
+        // Begin Case 2 - Finish Team and Render
         case "Finish Team":
           console.log(team);
           if (team.length > 0) {
-            console.log("all done!"); 
+            console.log("all done!");
             writeHTML(render(team));
           } else {
             console.log("no team members");
@@ -135,16 +129,15 @@ function runEmployees() {
       // End
     });
 }
-// End function
+// End Team-Employees Function
 runEmployees();
 // Write to Page
-  function writeHTML(HTML){
-    console.log(HTML);
-  fs.writeFileSync(outputPath, HTML, function(err) {
-  if (err) {
-  return console.log(err);
-  }
-  // console.log("Success!");
+function writeHTML(HTML) {
+  console.log(HTML);
+  fs.writeFileSync(outputPath, HTML, function (err) {
+    if (err) {
+      return console.log(err);
+    }
+    console.log("Success!");
   });
 }
-

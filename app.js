@@ -68,7 +68,6 @@ function runEmployees() {
                     answer.officeNumber
                   );
                   team.push(newManager);
-                  console.log(team);
                   runEmployees();
                 });
             }
@@ -88,7 +87,6 @@ function runEmployees() {
                     answer.github
                   );
                   team.push(newEngineer);
-                  console.log(Engineer);
                   runEmployees();
                 });
             }

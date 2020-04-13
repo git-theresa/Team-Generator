@@ -129,7 +129,7 @@ const runEmployees=() => {
 // End Team-Employees Function
 runEmployees();
 // Write to Page
-function writeHTML(HTML) {
+const writeHTML=HTML=> {
   console.log(HTML);
   fs.writeFileSync(outputPath, HTML, function (err) {
     if (err) {

@@ -107,6 +107,13 @@ const runEmployees=() => {
                   type: "input",
                   message: "What is your GitHub id?",
                   name: "github",
+                  validate: value => {
+                    var regName = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i;
+                    if (!regName.test(value)) {
+                        return "'Please enter a valid GitHub ID.";
+                    }
+                    return true;
+                  }
                 })
                 .then(answer => {
                   let newEngineer = new Engineer(

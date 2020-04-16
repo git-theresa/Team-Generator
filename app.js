@@ -1,12 +1,18 @@
+// Dependencies built in Node
+const path = require("path");
+const fs = require("fs");
+// Dependencies from Json
+const inquirer = require("inquirer");
+const validator = require("validator");
+// Export.Employee Types
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const render = require("./lib/htmlRenderer");
-const inquirer = require("inquirer");
-const path = require("path");
-const fs = require("fs");
+// Path Directories
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
+
 
 // Prompts within command line (Based from Employee Role)
 const questions = [
@@ -14,6 +20,13 @@ const questions = [
     type: "input",
     message: "What is your full name?",
     name: "firstLast",
+    validate: value => {
+      var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+      if (!regName.test(value)) {
+          return "'Please enter your full name (first name & last name)";
+      }
+      return true;
+    }
   },
   {
     type: "input",
@@ -27,9 +40,8 @@ const questions = [
     name: "role",
   },
   {
-    type: "list",
-    message: "Employees Number id",
-    choices: ["1", "2", "3", "No More Team Members"],
+    type: "input",
+    message: "Employee's ID Number",
     name: "id",
   },
 ];

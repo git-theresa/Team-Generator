@@ -126,6 +126,12 @@ const runEmployees=() => {
                   type: "input",
                   message: "What school did you attend?",
                   name: "school",
+                  validate: value => {
+                    if (validator.isAlpha(value)) {
+                        return true
+                    }
+                    return "Please enter a valid School Name."
+                }
                 })
                 .then(answer => {
                   let newIntern = new Intern(

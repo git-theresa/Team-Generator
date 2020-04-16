@@ -85,7 +85,7 @@ const runEmployees = () => {
                     if (validator.isInt(value)) {
                       return true;
                     }
-                    return "Please enter a valid Phone Number.";
+                    return "Please enter a valid number.";
                   },
                 })
                 .then((answer) => {

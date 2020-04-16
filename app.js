@@ -13,31 +13,30 @@ const render = require("./lib/htmlRenderer");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-
 // Prompts within command line (Based from Employee Role)
 const questions = [
   {
     type: "input",
     message: "What is your full name?",
     name: "firstLast",
-    validate: value => {
+    validate: (value) => {
       var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
       if (!regName.test(value)) {
-          return "'Please enter your full name (first name & last name)";
+        return "'Please enter your full name (first name & last name)";
       }
       return true;
-    }
+    },
   },
   {
     type: "input",
     message: "What is your email address?",
     name: "email",
-    validate: value => {
+    validate: (value) => {
       if (validator.isEmail(value)) {
-          return true
+        return true;
       }
-      return "Please enter a valid @ e-mail address."
-  }
+      return "Please enter a valid @ e-mail address.";
+    },
   },
   {
     type: "list",
@@ -49,18 +48,18 @@ const questions = [
     type: "input",
     message: "Employee's ID Number",
     name: "id",
-    validate: value => {
+    validate: (value) => {
       if (validator.isInt(value)) {
-          return true
+        return true;
       }
-      return "Please enter a valid ID Number."
-  }
+      return "Please enter a valid ID Number.";
+    },
   },
 ];
 // End Questions:
 const team = [];
 
-const runEmployees=() => {
+const runEmployees = () => {
   inquirer
     .prompt([
       {
@@ -70,11 +69,11 @@ const runEmployees=() => {
         name: "newTeam",
       },
     ])
-    .then(response => {
+    .then((response) => {
       const buildTeam = response.newTeam;
       switch (buildTeam) {
         case "Build Team":
-          inquirer.prompt(questions).then(choices => {
+          inquirer.prompt(questions).then((choices) => {
             // Manager Role
             if (choices.role === "Manager") {
               inquirer
@@ -82,14 +81,14 @@ const runEmployees=() => {
                   type: "input",
                   message: "What is your office number?",
                   name: "officeNumber",
-                  validate: value => {
+                  validate: (value) => {
                     if (validator.isInt(value)) {
-                        return true
+                      return true;
                     }
-                    return "Please enter a valid Phone Number."
-                }
+                    return "Please enter a valid Phone Number.";
+                  },
                 })
-                 .then(answer => {
+                .then((answer) => {
                   let newManager = new Manager(
                     choices.firstLast,
                     choices.id,
@@ -107,15 +106,15 @@ const runEmployees=() => {
                   type: "input",
                   message: "What is your GitHub id?",
                   name: "github",
-                  validate: value => {
+                  validate: (value) => {
                     var regName = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i;
                     if (!regName.test(value)) {
-                        return "'Please enter a valid GitHub ID.";
+                      return "'Please enter a valid GitHub ID.";
                     }
                     return true;
-                  }
+                  },
                 })
-                .then(answer => {
+                .then((answer) => {
                   let newEngineer = new Engineer(
                     choices.firstLast,
                     choices.id,
@@ -133,14 +132,8 @@ const runEmployees=() => {
                   type: "input",
                   message: "What school did you attend?",
                   name: "school",
-                  validate: value => {
-                    if (validator.isAlpha(value)) {
-                        return true
-                    }
-                    return "Please enter a valid School Name."
-                }
                 })
-                .then(answer => {
+                .then((answer) => {
                   let newIntern = new Intern(
                     choices.firstLast,
                     choices.id,
@@ -168,11 +161,11 @@ const runEmployees=() => {
       }
       // End
     });
-}
+};
 // End Team-Employees Function
 runEmployees();
 // Write to Page
-const writeHTML=HTML=> {
+const writeHTML = (HTML) => {
   console.log(HTML);
   fs.writeFileSync(outputPath, HTML, (err) => {
     if (err) {
@@ -180,4 +173,4 @@ const writeHTML=HTML=> {
     }
     console.log("Success!");
   });
-}
+};

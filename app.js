@@ -32,6 +32,12 @@ const questions = [
     type: "input",
     message: "What is your email address?",
     name: "email",
+    validate: value => {
+      if (validator.isEmail(value)) {
+          return true
+      }
+      return "Please enter a valid @ e-mail address."
+  }
   },
   {
     type: "list",
@@ -43,6 +49,12 @@ const questions = [
     type: "input",
     message: "Employee's ID Number",
     name: "id",
+    validate: value => {
+      if (validator.isInt(value)) {
+          return true
+      }
+      return "Please enter a valid ID Number."
+  }
   },
 ];
 // End Questions:
@@ -70,6 +82,12 @@ const runEmployees=() => {
                   type: "input",
                   message: "What is your office number?",
                   name: "officeNumber",
+                  validate: value => {
+                    if (validator.isInt(value)) {
+                        return true
+                    }
+                    return "Please enter a valid Phone Number."
+                }
                 })
                  .then(answer => {
                   let newManager = new Manager(
